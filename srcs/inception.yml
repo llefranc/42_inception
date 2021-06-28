@@ -1,0 +1,7 @@
+version: '3'
+services:
+  nginx_cont:
+    build: nginx/.
+    image: nginx_img
+    ports:
+      - 443:443
