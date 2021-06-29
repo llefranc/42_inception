@@ -15,6 +15,17 @@ NAME		=	inception
 all		: 	$(NAME)
 
 $(NAME)	:
-			docker-compose -f srcs/inception.yml up --build
+			sed -i 's/INSTALL=1/INSTALL=0/g' srcs/.env
+			docker-compose -f srcs/docker-compose.yaml up --build
+
+install	:
+			sed -i 's/INSTALL=0/INSTALL=1/g' srcs/.env
+			docker-compose -f srcs/docker-compose.yaml up --build
+
+clean	:	
+			docker-compose -f srcs/docker-compose.yaml down 
+
+fclean	:	clean
+			docker volume rm srcs_mariaDB-data srcs_website-pages
 
 .PHONY	:	all

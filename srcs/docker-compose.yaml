@@ -1,0 +1,40 @@
+version: '3'
+
+services:  
+  nginx_cont:
+    build: nginx/.
+    image: nginx_img
+    ports:
+      - 443:443
+    volumes:
+      - website-pages:/usr/share/webapp
+      
+  wordpress_cont:
+    build: wordpress/.
+    image: wordpress_img
+    environment:
+      - INSTALL=${INSTALL}
+    volumes:
+      - website-pages:/usr/share/webapp
+      
+  mysql_cont:
+    build: mysql/.
+    image: mysql_img
+    environment:
+      - INSTALL=${INSTALL}
+    volumes:
+      - mariaDB-data:/var/lib/mysql
+      
+volumes:
+  mariaDB-data:
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/llefranc/data/mariaDB'
+  website-pages:
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/llefranc/data/wordpress'

@@ -8,10 +8,7 @@ RUN wget -O /usr/bin/dumb-init https://github.com/Yelp/dumb-init/releases/downlo
 RUN chmod +x /usr/bin/dumb-init
 
 # needed to launch nginx
-RUN mkdir -p /run/nginx
-
-RUN mkdir /usr/share/webapp
-RUN mv /var/lib/nginx/html/index.html /usr/share/webapp/index.html
+RUN mkdir -p /run/nginx /usr/share/webapp
 
 # replace default nginx conf with ours
 RUN rm /etc/nginx/http.d/default.conf
@@ -19,6 +16,10 @@ COPY my_nginx.conf /etc/nginx/http.d/my_nginx.conf
 
 # Creating directory for TLS config
 RUN mkdir /etc/nginx/tls
+
+# Creating TLS certificate
+RUN openssl req -new -newkey rsa:4096 -x509 -sha256 -days 365 -nodes -out /etc/nginx/tls/nginx.crt \
+		-keyout /etc/nginx/tls/nginx.key -subj '/CN=localhost'
 
 # copying script for starting nginx and infinite loop to prevent exit
 COPY script.sh /home/script/script.sh
