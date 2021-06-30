@@ -11,6 +11,7 @@ services:
       - /home/llefranc/data/wordpress:/usr/share/webapp
     networks:
       - incept-net
+    restart: always
       
   wordpress_cont:
     build: wordpress/.
@@ -24,6 +25,7 @@ services:
       - /home/llefranc/data/wordpress:/usr/share/webapp
     networks:
       - incept-net
+    restart: always
       
   mysql_cont:
     build: mysql/.
@@ -37,6 +39,7 @@ services:
       - /home/llefranc/data/mariaDB:/var/lib/mysql
     networks:
       - incept-net
+    restart: always
 
 networks:
   incept-net:

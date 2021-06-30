@@ -9,7 +9,7 @@ then
 	cp /wp-config.php /usr/share/webapp/wp-config.php
 	chmod 755 /usr/share/webapp/wp-config.php
 
-	wp-cli --allow-root core install --path=/usr/share/webapp --url=https://localhost/ \
+	wp-cli --allow-root core install --path=/usr/share/webapp --url=https://llefranc.42.fr/ \
 	--title="site_inception" --admin_user=$MARIADB_USER --admin_password=$MARIADB_PASSWD --admin_email=xxx@xxx.fr
 
 	# creating 2 wordpress users
