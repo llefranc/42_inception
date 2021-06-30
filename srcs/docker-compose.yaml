@@ -6,6 +6,7 @@ services:
     image: nginx_img
     ports:
       - 443:443
+      - 8080:80
     volumes:
       - website-pages:/usr/share/webapp
       

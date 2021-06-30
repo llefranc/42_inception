@@ -14,18 +14,23 @@ NAME		=	inception
 
 all		: 	$(NAME)
 
-$(NAME)	:
-			sed -i 's/INSTALL=1/INSTALL=0/g' srcs/.env
-			docker-compose -f srcs/docker-compose.yaml up --build
+$(NAME)		:
+				sed -i 's/INSTALL=1/INSTALL=0/g' srcs/.env
+				docker-compose -f srcs/docker-compose.yaml up --build
 
-install	:
-			sed -i 's/INSTALL=0/INSTALL=1/g' srcs/.env
-			docker-compose -f srcs/docker-compose.yaml up --build
+install		:
+				sed -i 's/INSTALL=0/INSTALL=1/g' srcs/.env
+				docker-compose -f srcs/docker-compose.yaml up --build
 
-clean	:	
-			docker-compose -f srcs/docker-compose.yaml down 
+clean		:	
+				docker-compose -f srcs/docker-compose.yaml down 
 
-fclean	:	clean
-			docker volume rm srcs_mariaDB-data srcs_website-pages
+fclean		:	clean
+				docker volume rm srcs_mariaDB-data srcs_website-pages
 
-.PHONY	:	all
+clean_host	:	
+				rm -rf /home/llefranc/data/wordpress/* /home/llefranc/data/mariaDB/* 
+
+re			:	fclean all
+
+.PHONY		:	all re clean_host clean fclean

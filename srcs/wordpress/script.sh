@@ -1,6 +1,4 @@
 # !/bin/sh
-nginx
-php-fpm7
 sleep 3
 
 if [ $INSTALL -eq 1 ]
@@ -18,7 +16,4 @@ then
 	mysql -u user42 -puser42 -h mysql_cont -D 42_inception -P 3306 < /home/script/create_user_wp.sql
 fi
 
-while true
-do
-	sleep 1;
-done
+php-fpm7 -F

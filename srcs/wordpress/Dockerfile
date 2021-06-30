@@ -27,6 +27,10 @@ RUN chmod 755 /usr/bin/wp-cli
 
 # copying wordpress config file + rights
 COPY wp-config.php /wp-config.php
+COPY index.php /index.php
+RUN mkdir /test && cp /index.php /test/index.php
+
+RUN touch /var/log/fpm-php.error.log && chmod 666 /var/log/fpm-php.error.log
 
 # config file for php-fpm
 RUN rm /etc/php7/php-fpm.d/www.conf
