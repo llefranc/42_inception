@@ -26,11 +26,8 @@ clean		:
 				docker-compose -f srcs/docker-compose.yaml down 
 
 fclean		:	clean
-				docker volume rm srcs_mariaDB-data srcs_website-pages
+				rm -rf /home/llefranc/data/wordpress/* /home/llefranc/data/mariaDB/*
 
-clean_host	:	
-				rm -rf /home/llefranc/data/wordpress/* /home/llefranc/data/mariaDB/* 
-
-re			:	fclean all
+re			:	fclean install
 
 .PHONY		:	all re clean_host clean fclean
