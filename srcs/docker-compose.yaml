@@ -8,7 +8,7 @@ services:
       - 443:443
       - 8080:80
     volumes:
-      - website-pages:/usr/share/webapp
+      - /home/llefranc/data/wordpress:/usr/share/webapp
       
   wordpress_cont:
     build: wordpress/.
@@ -16,7 +16,7 @@ services:
     environment:
       - INSTALL=${INSTALL}
     volumes:
-      - website-pages:/usr/share/webapp
+      - /home/llefranc/data/wordpress:/usr/share/webapp
       
   mysql_cont:
     build: mysql/.
@@ -24,18 +24,18 @@ services:
     environment:
       - INSTALL=${INSTALL}
     volumes:
-      - mariaDB-data:/var/lib/mysql
+      - /home/llefranc/data/mariaDB:/var/lib/mysql
       
-volumes:
-  mariaDB-data:
-    driver: local
-    driver_opts:
-      o: 'bind'
-      type: 'none'
-      device: '/home/llefranc/data/mariaDB'
-  website-pages:
-    driver: local
-    driver_opts:
-      o: 'bind'
-      type: 'none'
-      device: '/home/llefranc/data/wordpress'
+# volumes:
+#   mariaDB-data:
+#     driver: local
+#     driver_opts:
+#       o: 'bind'
+#       type: 'none'
+#       device: '/home/llefranc/data/mariaDB'
+  # website-pages:
+  #   driver: local
+  #   driver_opts:
+  #     o: 'bind'
+  #     type: 'none'
+  #     device: '/home/llefranc/data/wordpress'
