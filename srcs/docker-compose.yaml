@@ -9,6 +9,8 @@ services:
       - 8080:80
     volumes:
       - /home/llefranc/data/wordpress:/usr/share/webapp
+    networks:
+      - incept-net
       
   wordpress_cont:
     build: wordpress/.
@@ -20,6 +22,8 @@ services:
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
       - /home/llefranc/data/wordpress:/usr/share/webapp
+    networks:
+      - incept-net
       
   mysql_cont:
     build: mysql/.
@@ -31,17 +35,8 @@ services:
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
       - /home/llefranc/data/mariaDB:/var/lib/mysql
-      
-# volumes:
-#   mariaDB-data:
-#     driver: local
-#     driver_opts:
-#       o: 'bind'
-#       type: 'none'
-#       device: '/home/llefranc/data/mariaDB'
-  # website-pages:
-  #   driver: local
-  #   driver_opts:
-  #     o: 'bind'
-  #     type: 'none'
-  #     device: '/home/llefranc/data/wordpress'
+    networks:
+      - incept-net
+
+networks:
+  incept-net:

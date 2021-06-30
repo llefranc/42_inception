@@ -22,7 +22,7 @@ then
     mysql < create_user.sql
 fi
 
-# rm create_user.sql
+rm create_user.sql
 
 while true
 do
