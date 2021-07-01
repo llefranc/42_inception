@@ -15,10 +15,6 @@ RUN wget https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.ph
 RUN mv wp-cli.phar /usr/bin/wp-cli
 RUN chmod 755 /usr/bin/wp-cli
 
-# replace default nginx conf with ours
-# RUN rm /etc/nginx/http.d/default.conf
-# COPY my_nginx.conf /etc/nginx/http.d/my_nginx.conf
-
 # copying wordpress config file + rights
 COPY wp-config.php /wp-config.php
 
