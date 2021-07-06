@@ -27,7 +27,7 @@ clean		:
 
 fclean		:	clean
 				rm -rf /home/llefranc/data/wordpress/* /home/llefranc/data/mariaDB/*
+				docker volume rm srcs_mariaDB-data
+				# docker volume rm srcs_website-pages
 
-re			:	fclean install
-
-.PHONY		:	all re clean_host clean fclean
+.PHONY		:	all clean_host clean fclean

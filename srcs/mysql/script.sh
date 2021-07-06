@@ -22,4 +22,6 @@ then
     pkill mysqld
 fi
 
+rm create_user.sql
+
 /usr/bin/mysqld --user=$MARIADB_USER

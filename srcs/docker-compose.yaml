@@ -6,9 +6,9 @@ services:
     image: nginx_img
     ports:
       - 443:443
-      - 8080:80
     volumes:
-      - /home/llefranc/data/wordpress:/usr/share/webapp
+      # - /home/llefranc/data/wordpress:/usr/share/webapp
+      - website-pages:/usr/share/webapp
     networks:
       - incept-net
     restart: always
@@ -22,7 +22,8 @@ services:
       - MARIADB_PASSWD=${MARIADB_PASSWD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
-      - /home/llefranc/data/wordpress:/usr/share/webapp
+      # - /home/llefranc/data/wordpress:/usr/share/webapp
+      - website-pages:/usr/share/webapp
     networks:
       - incept-net
     restart: always
@@ -36,10 +37,25 @@ services:
       - MARIADB_PASSWD=${MARIADB_PASSWD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
-      - /home/llefranc/data/mariaDB:/var/lib/mysql
+      # - /home/llefranc/data/mariaDB:/var/lib/mysql
+      - mariaDB-data:/var/lib/mysql
     networks:
       - incept-net
     restart: always
 
 networks:
   incept-net:
+
+volumes:
+  mariaDB-data:
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/llefranc/data/mariaDB'
+  website-pages:
+    driver: local
+    driver_opts:
+      o: 'bind'
+      type: 'none'
+      device: '/home/llefranc/data/wordpress' 
