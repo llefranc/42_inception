@@ -1,43 +1,40 @@
 version: '3'
 
 services:  
-  nginx_cont:
+  nginx:
     build: nginx/.
-    image: nginx_img
+    image: nginx
     ports:
       - 443:443
     volumes:
-      # - /home/llefranc/data/wordpress:/usr/share/webapp
       - website-pages:/usr/share/webapp
     networks:
       - incept-net
     restart: always
       
-  wordpress_cont:
+  wordpress:
     build: wordpress/.
-    image: wordpress_img
+    image: wordpress
     environment:
       - INSTALL=${INSTALL}
       - MARIADB_USER=${MARIADB_USER}
       - MARIADB_PASSWD=${MARIADB_PASSWD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
-      # - /home/llefranc/data/wordpress:/usr/share/webapp
       - website-pages:/usr/share/webapp
     networks:
       - incept-net
     restart: always
       
-  mysql_cont:
+  mysql:
     build: mysql/.
-    image: mysql_img
+    image: mysql
     environment:
       - INSTALL=${INSTALL}
       - MARIADB_USER=${MARIADB_USER}
       - MARIADB_PASSWD=${MARIADB_PASSWD}
       - MARIADB_DATABASE=${MARIADB_DATABASE}
     volumes:
-      # - /home/llefranc/data/mariaDB:/var/lib/mysql
       - mariaDB-data:/var/lib/mysql
     networks:
       - incept-net

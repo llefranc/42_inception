@@ -16,11 +16,11 @@ all		: 	$(NAME)
 
 $(NAME)		:
 				sed -i 's/INSTALL=1/INSTALL=0/g' srcs/.env
-				docker-compose -f srcs/docker-compose.yaml up --build
+				docker-compose -f srcs/docker-compose.yaml up --force-recreate --build
 
 install		:
 				sed -i 's/INSTALL=0/INSTALL=1/g' srcs/.env
-				docker-compose -f srcs/docker-compose.yaml up --build
+				docker-compose -f srcs/docker-compose.yaml up --force-recreate --build
 
 clean		:	
 				docker-compose -f srcs/docker-compose.yaml down 

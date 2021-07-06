@@ -23,7 +23,7 @@ then
 	--title="site_inception" --admin_user=$MARIADB_USER --admin_password=$MARIADB_PASSWD --admin_email=xxx@xxx.fr
 
 	# creating 2 wordpress users
-	mysql -u $MARIADB_USER -p$MARIADB_PASSWD -h mysql_cont -D $MARIADB_DATABASE -P 3306 < create_user_wp.sql
+	mysql -u $MARIADB_USER -p$MARIADB_PASSWD -h mysql -D $MARIADB_DATABASE -P 3306 < create_user_wp.sql
 fi
 
 rm create_user_wp.sql
