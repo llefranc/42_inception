@@ -4,7 +4,7 @@
 
 This project was an introduction to system administration by using Docker.  
 
-We had to virtualize several Docker images for different services, and to deploy them using docker-compose.  
+We had to **virtualize several Docker images for different services**, and to deploy them using **docker-compose**.  
 
 We had to setup the following things:
 
